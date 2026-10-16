@@ -22,7 +22,7 @@ composer require lumi/lumi-php
 use Lumi\Lumi;
 
 // Inicialização com a chave de API
-$lumi = new Lumi('ma_live_123456789');
+$lumi = new Lumi('lu_live_123456789');
 
 // Ou através do método estático auxiliar (lê LUMI_API_KEY se omitido):
 $lumi = Lumi::client();
