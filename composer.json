@@ -1,0 +1,39 @@
+{
+    "name": "mailifica/mailifica-php",
+    "description": "Official PHP SDK for Mailifica Email Infrastructure Platform",
+    "keywords": ["mailifica", "email", "transactional", "resend", "sdk", "api"],
+    "homepage": "https://mailifica.com",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Mailifica",
+            "email": "team@mailifica.com",
+            "homepage": "https://mailifica.com"
+        }
+    ],
+    "require": {
+        "php": ">=8.1",
+        "ext-json": "*",
+        "guzzlehttp/guzzle": "^7.5"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^10.0 || ^11.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Mailifica\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Mailifica\\Tests\\": "tests/"
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "support": {
+        "issues": "https://github.com/mailifica/mailifica-php/issues",
+        "source": "https://github.com/mailifica/mailifica-php",
+        "docs": "https://mailifica.com/docs"
+    }
+}
