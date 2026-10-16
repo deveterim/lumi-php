@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace Mailifica;
+namespace Lumi;
 
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Exception\RequestException;
-use Mailifica\Exceptions\ApiKeyMissingException;
-use Mailifica\Exceptions\MailificaException;
+use Lumi\Exceptions\ApiKeyMissingException;
+use Lumi\Exceptions\LumiException;
 
 class Client
 {
     public const VERSION = '1.0.2';
-    public const DEFAULT_BASE_URL = 'https://api.mailifica.com/v1';
+    public const DEFAULT_BASE_URL = 'https://api.lumi.email/v1';
 
     private string $apiKey;
     private string $baseUrl;
@@ -22,13 +22,13 @@ class Client
 
     public function __construct(?string $apiKey = null, ?string $baseUrl = null, ?ClientInterface $httpClient = null)
     {
-        $resolvedKey = $apiKey ?? getenv('MAILIFICA_API_KEY') ?: '';
+        $resolvedKey = $apiKey ?? getenv('LUMI_API_KEY') ?: '';
         if (empty($resolvedKey)) {
             throw new ApiKeyMissingException();
         }
 
         $this->apiKey = $resolvedKey;
-        $this->baseUrl = rtrim($baseUrl ?? getenv('MAILIFICA_BASE_URL') ?: self::DEFAULT_BASE_URL, '/');
+        $this->baseUrl = rtrim($baseUrl ?? getenv('LUMI_BASE_URL') ?: self::DEFAULT_BASE_URL, '/');
         $this->httpClient = $httpClient ?? new GuzzleClient([
             'timeout' => 30.0,
             'http_errors' => false,
@@ -43,7 +43,7 @@ class Client
             'Authorization' => 'Bearer ' . $this->apiKey,
             'Content-Type' => 'application/json',
             'Accept' => 'application/json',
-            'User-Agent' => 'mailifica-php/' . self::VERSION,
+            'User-Agent' => 'lumi-php/' . self::VERSION,
         ], $options['headers'] ?? []);
 
         $requestOptions = [
@@ -68,7 +68,7 @@ class Client
             if ($statusCode >= 400) {
                 $message = $data['message']
                     ?? (is_array($data['error'] ?? null) ? ($data['error']['message'] ?? json_encode($data['error'])) : ($data['error'] ?? 'HTTP request failed with status code ' . $statusCode));
-                throw new MailificaException($message, $statusCode, $data);
+                throw new LumiException($message, $statusCode, $data);
             }
 
             return $data;
@@ -80,9 +80,9 @@ class Client
             $message = $data['message']
                 ?? (is_array($data['error'] ?? null) ? ($data['error']['message'] ?? json_encode($data['error'])) : ($data['error'] ?? $e->getMessage()));
 
-            throw new MailificaException($message, $statusCode, $data, $e);
+            throw new LumiException($message, $statusCode, $data, $e);
         } catch (GuzzleException $e) {
-            throw new MailificaException($e->getMessage(), (int) $e->getCode(), [], $e);
+            throw new LumiException($e->getMessage(), (int) $e->getCode(), [], $e);
         }
     }
 

@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Mailifica;
+namespace Lumi;
 
 use GuzzleHttp\ClientInterface;
-use Mailifica\Services\ApiKeys;
-use Mailifica\Services\Batch;
-use Mailifica\Services\Domains;
-use Mailifica\Services\Emails;
-use Mailifica\Services\Webhooks;
+use Lumi\Services\ApiKeys;
+use Lumi\Services\Batch;
+use Lumi\Services\Domains;
+use Lumi\Services\Emails;
+use Lumi\Services\Webhooks;
 
 class Mailifica
 {

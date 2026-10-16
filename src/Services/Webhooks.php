@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Mailifica\Services;
+namespace Lumi\Services;
 
-use Mailifica\Exceptions\InvalidSignatureException;
+use Lumi\Exceptions\InvalidSignatureException;
 
 class Webhooks
 {

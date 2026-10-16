@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace Mailifica\Tests;
+namespace Lumi\Tests;
 
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
-use Mailifica\Exceptions\ApiKeyMissingException;
-use Mailifica\Exceptions\InvalidSignatureException;
-use Mailifica\Exceptions\MailificaException;
-use Mailifica\Mailifica;
-use Mailifica\Services\Webhooks;
+use Lumi\Exceptions\ApiKeyMissingException;
+use Lumi\Exceptions\InvalidSignatureException;
+use Lumi\Exceptions\LumiException;
+use Lumi\Mailifica;
+use Lumi\Services\Webhooks;
 use PHPUnit\Framework\TestCase;
 
 class MailificaTest extends TestCase
@@ -37,7 +37,7 @@ class MailificaTest extends TestCase
         $handlerStack = HandlerStack::create($mock);
         $customHttpClient = new GuzzleClient(['handler' => $handlerStack]);
 
-        $mailifica = new Mailifica('test_api_key', 'https://api.mailifica.com/v1', $customHttpClient);
+        $mailifica = new Mailifica('test_api_key', 'https://api.lumi.email/v1', $customHttpClient);
 
         $response = $mailifica->emails->send([
             'from' => 'test@mailifica.com',
@@ -64,7 +64,7 @@ class MailificaTest extends TestCase
 
         $mailifica = new Mailifica('test_api_key', null, $customHttpClient);
 
-        $this->expectException(MailificaException::class);
+        $this->expectException(LumiException::class);
         $this->expectExceptionMessage('The "from" address is invalid.');
 
         $mailifica->emails->send([

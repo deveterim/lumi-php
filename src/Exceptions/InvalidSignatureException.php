@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Mailifica\Exceptions;
+namespace Lumi\Exceptions;
 
-class InvalidSignatureException extends MailificaException
+class InvalidSignatureException extends LumiException
 {
     public function __construct(string $message = "The provided webhook signature is invalid or does not match the payload.")
     {

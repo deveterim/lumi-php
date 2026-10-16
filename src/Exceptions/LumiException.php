@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Mailifica\Exceptions;
+namespace Lumi\Exceptions;
 
 use Exception;
 
-class MailificaException extends Exception
+class LumiException extends Exception
 {
     private int $statusCode;
     private array $details;

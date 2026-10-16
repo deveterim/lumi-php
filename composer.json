@@ -1,14 +1,14 @@
 {
-    "name": "mailifica/mailifica-php",
+    "name": "lumi/lumi-php",
     "description": "Official PHP SDK for Mailifica Email Infrastructure Platform",
     "keywords": ["mailifica", "email", "transactional", "resend", "sdk", "api"],
-    "homepage": "https://mailifica.com",
+    "homepage": "https://lumi.email",
     "license": "MIT",
     "authors": [
         {
             "name": "Mailifica",
             "email": "team@mailifica.com",
-            "homepage": "https://mailifica.com"
+            "homepage": "https://lumi.email"
         }
     ],
     "require": {
@@ -21,19 +21,19 @@
     },
     "autoload": {
         "psr-4": {
-            "Mailifica\\": "src/"
+            "Lumi\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Mailifica\\Tests\\": "tests/"
+            "Lumi\\Tests\\": "tests/"
         }
     },
     "minimum-stability": "stable",
     "prefer-stable": true,
     "support": {
-        "issues": "https://github.com/mailifica/mailifica-php/issues",
-        "source": "https://github.com/mailifica/mailifica-php",
-        "docs": "https://mailifica.com/docs"
+        "issues": "https://github.com/lumi/lumi-php/issues",
+        "source": "https://github.com/lumi/lumi-php",
+        "docs": "https://lumi.email/docs"
     }
 }
