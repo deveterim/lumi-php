@@ -1,13 +1,13 @@
 {
     "name": "lumi/lumi-php",
-    "description": "Official PHP SDK for Mailifica Email Infrastructure Platform",
-    "keywords": ["mailifica", "email", "transactional", "resend", "sdk", "api"],
+    "description": "Official PHP SDK for Lumi Email Infrastructure Platform",
+    "keywords": ["lumi", "email", "transactional", "resend", "sdk", "api"],
     "homepage": "https://lumi.email",
     "license": "MIT",
     "authors": [
         {
-            "name": "Mailifica",
-            "email": "team@mailifica.com",
+            "name": "Lumi",
+            "email": "team@lumi.email",
             "homepage": "https://lumi.email"
         }
     ],

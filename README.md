@@ -1,6 +1,6 @@
-# Mailifica PHP SDK (`mailifica-php`)
+# Lumi PHP SDK (`lumi-php`)
 
-> SDK oficial em PHP para a infraestrutura de e-mails transacionais **Mailifica**, com interface fluida e compatível com o Resend PHP SDK.
+> SDK oficial em PHP para a infraestrutura de e-mails transacionais **Lumi**, com interface fluida e compatível com o Resend PHP SDK.
 
 ---
 
@@ -9,7 +9,7 @@
 Instale o pacote via [Composer](https://getcomposer.org):
 
 ```bash
-composer require mailifica/mailifica-php
+composer require lumi/lumi-php
 ```
 
 ---
@@ -19,13 +19,13 @@ composer require mailifica/mailifica-php
 ### 1. Inicializar o Cliente
 
 ```php
-use Mailifica\Mailifica;
+use Lumi\Lumi;
 
 // Inicialização com a chave de API
-$mailifica = new Mailifica('ma_live_123456789');
+$lumi = new Lumi('ma_live_123456789');
 
-// Ou através do método estático auxiliar (lê MAILIFICA_API_KEY se omitido):
-$mailifica = Mailifica::client();
+// Ou através do método estático auxiliar (lê LUMI_API_KEY se omitido):
+$lumi = Lumi::client();
 ```
 
 ---
@@ -33,10 +33,10 @@ $mailifica = Mailifica::client();
 ### 2. Enviar um E-mail Transacional
 
 ```php
-$response = $mailifica->emails->send([
+$response = $lumi->emails->send([
     'from' => 'onboarding@suaempresa.ao',
     'to' => ['cliente@gmail.com'],
-    'subject' => 'Boas-vindas à Mailifica!',
+    'subject' => 'Boas-vindas à Lumi!',
     'html' => '<h1>Olá!</h1><p>Seu e-mail transacional foi entregue com sucesso.</p>',
 ]);
 
@@ -48,7 +48,7 @@ echo 'E-mail enviado! ID: ' . $response['id'];
 ### 3. Envio em Lote (Batch)
 
 ```php
-$response = $mailifica->batch->send([
+$response = $lumi->batch->send([
     [
         'from' => 'news@suaempresa.ao',
         'to' => 'cliente1@gmail.com',
@@ -72,15 +72,15 @@ print_r($response);
 
 ```php
 // Criar novo domínio
-$domain = $mailifica->domains->create([
+$domain = $lumi->domains->create([
     'name' => 'suaempresa.ao',
 ]);
 
 // Verificar registros DNS
-$verified = $mailifica->domains->verify($domain['id']);
+$verified = $lumi->domains->verify($domain['id']);
 
 // Listar API Keys
-$apiKeys = $mailifica->apiKeys->list();
+$apiKeys = $lumi->apiKeys->list();
 ```
 
 ---
@@ -88,11 +88,11 @@ $apiKeys = $mailifica->apiKeys->list();
 ### 5. Validação de Webhooks HMAC SHA-256
 
 ```php
-use Mailifica\Services\Webhooks;
+use Lumi\Services\Webhooks;
 
 $payload = file_get_contents('php://input');
-$signature = $_SERVER['HTTP_MAILIFICA_SIGNATURE'] ?? '';
-$secret = getenv('MAILIFICA_WEBHOOK_SECRET');
+$signature = $_SERVER['HTTP_LUMI_SIGNATURE'] ?? '';
+$secret = getenv('LUMI_WEBHOOK_SECRET');
 
 // Validar assinatura
 $isValid = Webhooks::verifySignature($payload, $signature, $secret);
@@ -125,4 +125,4 @@ vendor/bin/phpunit
 
 Distribuído sob a licença **MIT**. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
 
-Copyright (c) 2026 [Mailifica](https://mailifica.com).
+Copyright (c) 2026 [Lumi](https://lumi.email).

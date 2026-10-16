@@ -11,16 +11,16 @@ use GuzzleHttp\Psr7\Response;
 use Lumi\Exceptions\ApiKeyMissingException;
 use Lumi\Exceptions\InvalidSignatureException;
 use Lumi\Exceptions\LumiException;
-use Lumi\Mailifica;
+use Lumi\Lumi;
 use Lumi\Services\Webhooks;
 use PHPUnit\Framework\TestCase;
 
-class MailificaTest extends TestCase
+class LumiTest extends TestCase
 {
     public function testThrowsExceptionWhenApiKeyIsMissing(): void
     {
         $this->expectException(ApiKeyMissingException::class);
-        new Mailifica('');
+        new Lumi('');
     }
 
     public function testSendsEmailSuccessfully(): void
@@ -28,7 +28,7 @@ class MailificaTest extends TestCase
         $mock = new MockHandler([
             new Response(200, ['Content-Type' => 'application/json'], json_encode([
                 'id' => 'email_123',
-                'from' => 'test@mailifica.com',
+                'from' => 'test@lumi.com',
                 'to' => ['recipient@example.com'],
                 'status' => 'sent'
             ])),
@@ -37,10 +37,10 @@ class MailificaTest extends TestCase
         $handlerStack = HandlerStack::create($mock);
         $customHttpClient = new GuzzleClient(['handler' => $handlerStack]);
 
-        $mailifica = new Mailifica('test_api_key', 'https://api.lumi.email/v1', $customHttpClient);
+        $lumi = new Lumi('test_api_key', 'https://api.lumi.email/v1', $customHttpClient);
 
-        $response = $mailifica->emails->send([
-            'from' => 'test@mailifica.com',
+        $response = $lumi->emails->send([
+            'from' => 'test@lumi.com',
             'to' => 'recipient@example.com',
             'subject' => 'Hello World',
             'html' => '<p>Test email</p>'
@@ -62,12 +62,12 @@ class MailificaTest extends TestCase
         $handlerStack = HandlerStack::create($mock);
         $customHttpClient = new GuzzleClient(['handler' => $handlerStack]);
 
-        $mailifica = new Mailifica('test_api_key', null, $customHttpClient);
+        $lumi = new Lumi('test_api_key', null, $customHttpClient);
 
         $this->expectException(LumiException::class);
         $this->expectExceptionMessage('The "from" address is invalid.');
 
-        $mailifica->emails->send([
+        $lumi->emails->send([
             'from' => 'invalid-email',
             'to' => 'recipient@example.com',
             'subject' => 'Fail'

@@ -11,7 +11,7 @@ use Lumi\Services\Domains;
 use Lumi\Services\Emails;
 use Lumi\Services\Webhooks;
 
-class Mailifica
+class Lumi
 {
     private Client $client;
 
@@ -33,7 +33,7 @@ class Mailifica
     }
 
     /**
-     * Factory helper to create a new Mailifica client.
+     * Factory helper to create a new Lumi client.
      */
     public static function client(?string $apiKey = null, ?string $baseUrl = null, ?ClientInterface $httpClient = null): self
     {
