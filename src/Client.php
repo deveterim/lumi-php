@@ -14,7 +14,7 @@ use Lumi\Exceptions\LumiException;
 class Client
 {
     public const VERSION = '1.0.2';
-    public const DEFAULT_BASE_URL = 'https://api.lumi.email/v1';
+    public const DEFAULT_BASE_URL = 'https://api.lumi.ao';
 
     private string $apiKey;
     private string $baseUrl;

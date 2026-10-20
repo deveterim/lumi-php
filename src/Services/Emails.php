@@ -41,7 +41,7 @@ class Emails
         if (isset($payload['reply_to']) && is_array($payload['reply_to'])) {
             $payload['reply_to'] = count($payload['reply_to']) > 0 ? $payload['reply_to'][0] : '';
         }
-        return $this->client->post('emails', $payload);
+        return $this->client->post('api/v1/send', $payload);
     }
 
     /**
@@ -49,7 +49,7 @@ class Emails
      */
     public function get(string $emailId): array
     {
-        return $this->client->get('emails/' . $emailId);
+        return $this->client->get('api/v1/send/' . $emailId);
     }
 
     /**
