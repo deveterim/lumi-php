@@ -32,8 +32,8 @@
     "minimum-stability": "stable",
     "prefer-stable": true,
     "support": {
-        "issues": "https://github.com/lumi/lumi-php/issues",
-        "source": "https://github.com/lumi/lumi-php",
+        "issues": "https://github.com/deveterim/lumi-php/issues",
+        "source": "https://github.com/deveterim/lumi-php",
         "docs": "https://lumi.email/docs"
     }
 }
